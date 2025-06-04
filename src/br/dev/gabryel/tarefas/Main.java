@@ -13,18 +13,25 @@ import br.dev.gabryel.tarefas.dao.FuncionarioDAO;
 import br.dev.gabryel.tarefas.model.Funcionario;
 import br.dev.gabryel.tarefas.model.Status;
 import br.dev.gabryel.tarefas.model.Tarefa;
+import br.dev.gabryel.tarefas.ui.FuncionarioFrame;
+import br.dev.gabryel.tarefas.ui.FuncionarioListaFrame;
 import br.dev.gabryel.tarefas.utils.Utils;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Funcionario funcionario = new Funcionario("Carlin" ,"DBA");
-		funcionario.setSetor("Tecnologia da Informação");
-		funcionario.setSalario(25000.98);
+		//new FuncionarioFrame();
+		new FuncionarioListaFrame();
+//		FuncionarioDAO dao = new FuncionarioDAO(null);
+//		dao.getFuncionarios();
 		
-		FuncionarioDAO dao = new FuncionarioDAO(funcionario);
-		dao.gravar();
+//		Funcionario funcionario = new Funcionario("Paulo moreira" ,"Eng.quimico");
+//		funcionario.setSetor("Produçãos");
+//		funcionario.setSalario(25000.98);
+//		
+//		FuncionarioDAO dao = new FuncionarioDAO(funcionario);
+//		dao.gravar();
 	}
 
 	private static void testarLeituraEscritaArquivo() {

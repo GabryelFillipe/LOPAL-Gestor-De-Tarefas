@@ -10,9 +10,7 @@ public class Funcionario {
 	private String setor;
 	private double salario;
 
-	public Funcionario() {
-		System.out.println("Criando um funcionario...");
-	}
+
 
 	public Funcionario(String nome) {
 		setNome(nome);
