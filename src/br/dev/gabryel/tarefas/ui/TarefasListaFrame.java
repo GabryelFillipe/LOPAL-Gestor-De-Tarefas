@@ -20,33 +20,33 @@ import javax.swing.table.DefaultTableModel;
 import br.dev.gabryel.tarefas.dao.FuncionarioDAO;
 import br.dev.gabryel.tarefas.model.Funcionario;
 
-public class FuncionarioListaFrame {
+public class TarefasListaFrame {
 
 	private JLabel labelTitulo;
 	private  JButton btnNovo;
 	private JButton btnSair;
 	
 	private DefaultTableModel model; //Dados da tabela
-	private JTable tabelaFuncionarios; //Tabela visualmente
-	private JScrollPane scrollFuncionarios; //Container da Tabela
+	private JTable tabelaTarefas; //Tabela visualmente
+	private JScrollPane scrollTarefas; //Container da Tabela
 	
 	String[] colunas = {"CÓDIGO", "NOME DO FUNCIONÁRIO", "CARGO"};
 	
-	public FuncionarioListaFrame(JFrame pai) {
+	public TarefasListaFrame(JFrame pai) {
 		criarTela(pai);
 	}
 	
 	private void criarTela(JFrame pai) {
-		JDialog telaFuncionarioLista = new JDialog(pai , "Lista de funcionarios" , true);
-		telaFuncionarioLista.setSize(700, 500);
-		telaFuncionarioLista.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		telaFuncionarioLista.setLayout(null);
-		telaFuncionarioLista.setLocationRelativeTo(null);
-		telaFuncionarioLista.setResizable(false);
+		JDialog telaTarefaLista = new JDialog(pai , "Lista de Tarefas" , true);
+		telaTarefaLista.setSize(700, 500);
+		telaTarefaLista.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		telaTarefaLista.setLayout(null);
+		telaTarefaLista.setLocationRelativeTo(null);
+		telaTarefaLista.setResizable(false);
 		
-		Container painel = telaFuncionarioLista.getContentPane();
+		Container painel = telaTarefaLista.getContentPane();
 		
-		labelTitulo = new JLabel("Cadastro de funcionários");
+		labelTitulo = new JLabel("Cadastro de Tarefas");
 		labelTitulo.setBounds(10, 10, 500, 40);
 		labelTitulo.setFont(new Font("Ärial", Font.BOLD, 32));
 		labelTitulo.setForeground(Color.RED);
@@ -54,20 +54,20 @@ public class FuncionarioListaFrame {
 		//Criar a Tabela
 	
 		model = new DefaultTableModel(colunas, 100);
-		tabelaFuncionarios = new JTable(model);
-		scrollFuncionarios = new JScrollPane(tabelaFuncionarios);
-		scrollFuncionarios.setBounds(10, 70, 680, 300);
+		tabelaTarefas = new JTable(model);
+		scrollTarefas = new JScrollPane(tabelaTarefas);
+		scrollTarefas.setBounds(10, 70, 680, 300);
 		
 		carregarDadosTabela();
 		
-		btnNovo = new JButton("Cadastrar novo Funcionário");
+		btnNovo = new JButton("Cadastrar nova Tarefa");
 		btnNovo.setBounds(10, 400, 250, 50);
 		
 		btnNovo.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new FuncionarioFrame(pai);
+				new TarefasFrame(pai);
 				carregarDadosTabela();
 				
 			}
@@ -80,10 +80,10 @@ public class FuncionarioListaFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int resposta =	JOptionPane.showConfirmDialog(telaFuncionarioLista, "Sair do sistema?", "Atenção", JOptionPane.YES_NO_OPTION );
+				int resposta =	JOptionPane.showConfirmDialog(telaTarefaLista, "Sair do sistema?", "Atenção", JOptionPane.YES_NO_OPTION );
 			
 				if(resposta == 0) {
-					telaFuncionarioLista.dispose();
+					telaTarefaLista.dispose();
 				}
 				
 				
@@ -91,11 +91,11 @@ public class FuncionarioListaFrame {
 		});
 		
 		painel.add(labelTitulo);
-		painel.add(scrollFuncionarios);
+		painel.add(scrollTarefas);
 		painel.add(btnNovo);
 		painel.add(btnSair);
 		
-		telaFuncionarioLista.setVisible(true);
+		telaTarefaLista.setVisible(true);
 	}
 	
 	private void carregarDadosTabela() {
@@ -120,5 +120,4 @@ public class FuncionarioListaFrame {
 		
 	
 	}
-	
 }

@@ -2,6 +2,8 @@ package br.dev.gabryel.tarefas.model;
 
 import java.time.LocalDate;
 
+import br.dev.gabryel.tarefas.utils.Utils;
+
 public class Tarefa {
 
 	private String nome;
@@ -11,9 +13,12 @@ public class Tarefa {
 	private int prazo;
 	private LocalDate dataEntrega;
 	private Status status;
+	private String id;
 
 	public Tarefa(Funcionario responsavel) {
 		setResponsavel(responsavel);
+		setID(Utils.gerarUUID8());
+
 	}
 
 	public String getNome() {
@@ -68,6 +73,16 @@ public class Tarefa {
 	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
+	
+	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setID(String id) {
+		this.id = id;
+	}
 
 	public Status getStatus() {
 		LocalDate hoje = LocalDate.now();
@@ -85,5 +100,8 @@ public class Tarefa {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+	public String toString() {
+		return nome + "," + descricao + "," + responsavel + "," + dataInicio + "," + prazo + "," + dataEntrega + "," +  status + "\n";  
 	}
 }
