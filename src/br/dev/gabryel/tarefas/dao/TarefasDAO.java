@@ -28,7 +28,7 @@ public class TarefasDAO {
 
 	}
 
-	public List<Tarefa> getFuncionarios() {
+	public List<Tarefa> getTarefas() {
 
 		List<Tarefa> Tarefas = new ArrayList<Tarefa>();
 
@@ -44,9 +44,8 @@ public class TarefasDAO {
 					Tarefa tarefa = new Tarefa(null);
 					tarefa.setNome(tarefasVetor[0]);
 					tarefa.setDescricao(tarefasVetor[1]);
-					tarefa.setResponsavel((Funcionario) getFuncionarios());
-					//(tarefasVetor[2])
-//						tarefa.setDataInicio(tarefasVetor[3]);
+					//tarefa.setResponsavel();
+					//tarefa.setDataInicio(tarefasVetor[3]);
 //						tarefa.setPrazo(Double.parseDouble(tarefasVetor[4]));
 //						tarefa.setDataEntrega(null);
 //						tarefa.setStatus(.toString() (tarefasVetor[7]));

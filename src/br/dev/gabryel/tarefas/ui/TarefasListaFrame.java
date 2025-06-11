@@ -18,7 +18,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import br.dev.gabryel.tarefas.dao.FuncionarioDAO;
+import br.dev.gabryel.tarefas.dao.TarefasDAO;
 import br.dev.gabryel.tarefas.model.Funcionario;
+import br.dev.gabryel.tarefas.model.Tarefa;
 
 public class TarefasListaFrame {
 
@@ -100,19 +102,19 @@ public class TarefasListaFrame {
 	
 	private void carregarDadosTabela() {
 		
-		List<Funcionario> funcionarios = new ArrayList<>();
+		List<Tarefa> tarefas = new ArrayList<>();
 		
-		FuncionarioDAO dao = new FuncionarioDAO(null);
-		funcionarios = dao.getFuncionarios();
+		TarefasDAO dao = new TarefasDAO();
+		tarefas = dao.getTarefas();
 		
 		int i = 0;
 		
-		Object[] [] dados = new Object[funcionarios.size()][3];
+		Object[] [] dados = new Object[tarefas.size()][3];
 		
-		for(Funcionario f : funcionarios) {
-			dados[i][0] = f.getMatricula();
-			dados[i][1] = f.getNome();
-			dados[i][2] = f.getCargo();
+		for(Tarefa f : tarefas) {
+			dados[i][0] = f.getNome();
+			dados[i][1] = f.getDescricao();
+			dados[i][2] = f.getResponsavel();
 			i++;
 		}
 		
