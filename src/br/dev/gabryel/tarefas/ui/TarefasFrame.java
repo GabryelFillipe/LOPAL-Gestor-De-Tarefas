@@ -149,7 +149,7 @@ public class TarefasFrame {
 				String funcionarioMatricula = daoFuncionario.getMatricula(funcionarioIndex);
 				Funcionario funcionario = daoFuncionario.getFuncionario(funcionarioMatricula);
 
-				Tarefa tarefa = new Tarefa(null);
+				Tarefa tarefa = new Tarefa(daoFuncionario.getFuncionario(funcionarioMatricula));
 
 				try {
 

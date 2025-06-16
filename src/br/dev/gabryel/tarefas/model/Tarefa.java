@@ -143,7 +143,7 @@ public class Tarefa {
 	}
 
 	public String toString() {
-		return id+ "," + nome + "," + descricao + "," + responsavel + "," + dataInicio + "," + prazo + "," + dataEntrega + ","
+		return id+ "," + nome + "," + descricao + "," + responsavel.getMatricula() + "," + dataInicio + "," + prazo + "," + dataEntrega + ","
 				+ status + "\n";
 	}
 }
