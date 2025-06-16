@@ -63,4 +63,64 @@ public class FuncionarioDAO {
 			return null;
 		}
 	}
+	
+	
+	public Funcionario getFuncionario(String matricula) {
+		List<Funcionario> funcionarios = new ArrayList<>();
+		funcionarios = getFuncionarios();
+		
+		String matriculaTemp;
+		Funcionario funcionario = null;
+		
+		for (int i = 0 ; i < funcionarios.size(); i++) {
+			funcionario = funcionarios.get(i);
+			matriculaTemp = funcionario.getMatricula();
+			if (matriculaTemp.equals(matricula)) {
+				return funcionario;
+			}
+		}
+		return funcionario;
+	}
+	
+	public String getMatricula(int indexResponsavel) {
+		
+		Object[][] dados = listaFuncionario();
+		String matricula = (String) dados[indexResponsavel][0];
+		return matricula;
+	}
+	
+	private Object[][] listaFuncionario(){
+		
+		List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+		
+		//Puxando os dados e criando a lista
+		FuncionarioDAO dao = new FuncionarioDAO(null);
+		funcionarios = dao.getFuncionarios();
+		
+		Object[][] dados = new Object[funcionarios.size()][2];
+		
+		int i = 0;
+		for (Funcionario f : funcionarios) {
+			dados[i][0] = f.getMatricula();
+			dados[i][1] = f.getNome();
+			i++;
+		}
+		return dados;
+		
+	}
+	
+	public String[] getFuncionariosNomes(){
+		
+		Object[][] dados = listaFuncionario();
+		String[] funcionariosNomes = new String[dados.length];
+		
+		for(int i = 0; i < funcionariosNomes.length; i++) {
+			funcionariosNomes[i] = (String) dados[i][1];
+		}
+		
+		return funcionariosNomes;
+		
+	}
+	
+	
 }

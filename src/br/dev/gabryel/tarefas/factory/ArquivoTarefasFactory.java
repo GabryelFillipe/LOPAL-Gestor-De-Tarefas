@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class ArquivoTarefasFactory {
 
-	private String caminho = "/Users/25132404/projetoTarefas/tarefas.csv";
+	private String caminho = "data/tarefas.csv";
 	private FileWriter fw;
 	private BufferedWriter bw;
 	private FileReader fr;
@@ -28,5 +28,12 @@ public class ArquivoTarefasFactory {
 		return br;
 
 	}
+	
+	public BufferedWriter getDbBW() throws IOException{
+		fw = new FileWriter(caminho, false);//ditando o caminho e avisando o programa que vai ser append true
+		bw = new BufferedWriter(fw);
+		
+		return bw;
+	} 
 
 }

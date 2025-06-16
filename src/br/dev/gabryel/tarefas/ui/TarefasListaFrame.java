@@ -104,7 +104,7 @@ public class TarefasListaFrame {
 		
 		List<Tarefa> tarefas = new ArrayList<>();
 		
-		TarefasDAO dao = new TarefasDAO();
+		TarefasDAO dao = new TarefasDAO(null);
 		tarefas = dao.getTarefas();
 		
 		int i = 0;

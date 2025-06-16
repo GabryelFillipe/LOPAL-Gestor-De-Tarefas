@@ -1,6 +1,8 @@
 package br.dev.gabryel.tarefas.model;
 
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 
 import br.dev.gabryel.tarefas.utils.Utils;
 
@@ -14,6 +16,7 @@ public class Tarefa {
 	private LocalDate dataEntrega;
 	private Status status;
 	private String id;
+	private String txtDataInicio;
 
 	public Tarefa(Funcionario responsavel) {
 		setResponsavel(responsavel);
@@ -73,8 +76,25 @@ public class Tarefa {
 	public void setDataEntrega(LocalDate dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
-	
-	
+
+	public void setDataEntrega(String dataTxt) {
+		if (dataTxt.equals("null")) {
+
+		} else {
+			System.out.println(dataTxt);
+			this.dataEntrega = LocalDate.parse(dataTxt, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		}
+	}
+
+	public void setDataInicio(String txtData) {
+		this.dataInicio = LocalDate.parse(txtData, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		txtDataInicio = dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	}
+
+	public LocalDate getDataPrazo() {
+		LocalDate dataPrazo = dataInicio.plusDays(prazo);
+		return dataPrazo;
+	}
 
 	public String getId() {
 		return id;
@@ -85,23 +105,45 @@ public class Tarefa {
 	}
 
 	public Status getStatus() {
-		LocalDate hoje = LocalDate.now();
-		if (hoje.isBefore(dataInicio)) {
-			status = status.NAO_INICIADO;
-		} else if (hoje.isAfter(dataEntrega)) {
-			status = status.EM_ATRASO;
-		} else if (hoje.isAfter(dataInicio)) {
-			status = status.EM_ANDAMENTO;
-		} else if (hoje.isEqual(dataEntrega)) {
-			status = status.CONCLUIDO;
+		if (status == null) {
+			classificarStatus();
 		}
 		return status;
+	}
+
+	private void classificarStatus() {
+
+		LocalDate dataPrazo = getDataPrazo();
+		LocalDate hoje = LocalDate.now();
+
+		if (hoje.isBefore(dataInicio)) {
+			status = status.NAO_INICIADO;
+
+		}
+		if (hoje.isAfter(dataPrazo)) {
+			status = status.EM_ATRASO;
+
+		} else if (hoje.isAfter(dataPrazo)) {
+			status = status.EM_ATRASO;
+		}
+
 	}
 
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+	public void setStatus(String status) {
+		if (status.equals("CONCLUIDO")) {
+			this.status = Status.CONCLUIDO;
+		} else {
+			classificarStatus();
+		}
+
+	}
+
 	public String toString() {
-		return nome + "," + descricao + "," + responsavel + "," + dataInicio + "," + prazo + "," + dataEntrega + "," +  status + "\n";  
+		return id+ "," + nome + "," + descricao + "," + responsavel + "," + dataInicio + "," + prazo + "," + dataEntrega + ","
+				+ status + "\n";
 	}
 }
